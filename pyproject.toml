@@ -7,7 +7,12 @@ authors = [
     { name = "Gor Madatyan", email = "gor-madatyan@proton.me" }
 ]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "numpy>=2.5.4",
+    "openai>=3.40.0",
+    "python-dotenv>=1.2.4",
+    "requests>=2.34.2",
+]
 
 [project.scripts]
 vibe-password = "vibe_password:main"
