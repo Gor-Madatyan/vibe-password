@@ -23,6 +23,8 @@ def main() -> None:
         "model": model
 
     }
-    embad1 = Emmbaded(config,"I love my little sister!")
-    embad2 = Emmbaded(config,"I adore my little precious sister")
+    Emmbaded.set_threshold(0.3)
+
+    embad1 = Emmbaded(config,"I love climbing when I am high!")
+    embad2 = Emmbaded(config,"I am forest lover")
     print(embad1 == embad2)
