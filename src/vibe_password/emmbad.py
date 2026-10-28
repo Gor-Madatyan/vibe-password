@@ -1,10 +1,13 @@
+import os
+
 import numpy as np
 
+INSTRUCT = "Retrieve sentences that express the same intent as the query, paying attention to negations, sentiment, quantities, and relationships."
 
 def emmbad(config, string)->np.ndarray:
     response = config["client"].embeddings.create(
       model=config["model"],
-      input=string,
+      input=f"Instruct: {INSTRUCT}\nQuery: {string}",
       encoding_format="float"
     )
 
@@ -14,11 +17,10 @@ def emmbad(config, string)->np.ndarray:
 
 
 class Emmbaded:
-    __treshold = 0.67
-
+    __treshold = float(os.getenv("TRESHOLD", "0.72"))
     @classmethod
     def get_threshold(cls) -> float:
-        return cls.__threshold
+        return cls.__treshold
 
     @classmethod
     def set_threshold(cls, value: float):
@@ -28,7 +30,7 @@ class Emmbaded:
         if not -1.0 <= value <= 1.0:
             raise ValueError("threshold must be between -1.0 and 1.0")
 
-        cls.__threshold = float(value)
+        cls.__treshold = float(value)
 
 
     def __init__(self, config, embadee:str):

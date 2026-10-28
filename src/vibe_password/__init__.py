@@ -16,15 +16,10 @@ def main() -> None:
         return
 
     config = {
-        "client": OpenAI(
-            base_url="https://openrouter.ai/api/v1",
-            api_key=api_key
-        ),
-        "model": model
-
+        "client": OpenAI(base_url="https://openrouter.ai/api/v1", api_key=api_key),
+        "model": model,
     }
-    Emmbaded.set_threshold(0.3)
 
-    embad1 = Emmbaded(config,"I love climbing when I am high!")
-    embad2 = Emmbaded(config,"I am forest lover")
-    print(embad1 == embad2)
+    embad1 = Emmbaded(config, "I love climbing!")
+    embad2 = Emmbaded(config, "I am a climber and I love it")
+    print(embad1.similarity(embad2))
