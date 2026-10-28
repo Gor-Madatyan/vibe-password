@@ -2,6 +2,8 @@ import os
 
 import numpy as np
 
+from vibe_password import CONFIG
+
 INSTRUCT = "Retrieve sentences that express the same intent as the query, paying attention to negations, sentiment, quantities, and relationships."
 
 def emmbad(config, string)->np.ndarray:
@@ -33,7 +35,7 @@ class Emmbaded:
         cls.__treshold = float(value)
 
 
-    def __init__(self, config, embadee:str):
+    def __init__(self, embadee:str, config = CONFIG):
        self.__embading = emmbad(config, embadee)
        self.__embadee = embadee
 

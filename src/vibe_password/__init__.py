@@ -3,8 +3,7 @@ import os
 from dotenv import load_dotenv
 from openai import OpenAI
 
-from .emmbad import Emmbaded
-
+CONFIG = {}
 
 def main() -> None:
     load_dotenv()
@@ -15,11 +14,11 @@ def main() -> None:
         print("invalid env")
         return
 
-    config = {
+    global CONFIG
+    CONFIG = {
         "client": OpenAI(base_url="https://openrouter.ai/api/v1", api_key=api_key),
         "model": model,
     }
 
-    embad1 = Emmbaded(config, "I love climbing!")
-    embad2 = Emmbaded(config, "I am a climber and I love it")
-    print(embad1.similarity(embad2))
+
+main()
